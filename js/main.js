@@ -22,3 +22,15 @@ function createIdGenerator() {
 }
 const generateId = createIdGenerator();
 const generateIdPhoto = createIdGenerator();
+
+/**
+ * Функция-генератор случайного числа.
+ * @param {integer} min - Нижняя граница диапозона случайного числа.
+ * @param {integer} max - Верхняя граница диапозона случайного числа.
+ * @return {integer} - Случайное число из диапозона.
+ */
+function createRandomNumber(min,max) {
+  const minValue = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
+  const maxValue = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
+  return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
+}
