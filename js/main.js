@@ -54,3 +54,6 @@ function getObject() {
   });
 }
 
+//Создаем массив и добавляем в него 25 сгенерированных объектов.
+// eslint-disable-next-line no-unused-vars
+const arrayOfPhotos = Array.from({length: NUM_OF_GENERATIONS}, getObject);
