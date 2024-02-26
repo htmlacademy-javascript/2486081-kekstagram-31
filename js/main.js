@@ -34,3 +34,23 @@ function createRandomNumber(min,max) {
   const maxValue = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
 }
+
+/**
+ * Функция создания объекта.
+ * @return {object} - Объект со сгенерироваными значениями ключей.
+ */
+function getObject() {
+  return ({
+    id: generateId(),
+    url: `photos/${generateIdPhoto()}.jpg`,
+    description: RANDOM_DESCRIPTION[createRandomNumber(0, RANDOM_DESCRIPTION.length - 1)],
+    likes:createRandomNumber(minLikes,maxLikes),
+    comments: {
+      id: createRandomNumber(0,1000),
+      avatar: `img/avatar-${createRandomNumber(1,6)}.svg`,
+      message: RANDOM_MESSAGE[createRandomNumber(0,RANDOM_MESSAGE.length - 1)],
+      name: RANDOM_NAME[createRandomNumber(0,RANDOM_NAME.length - 1)]
+    }
+  });
+}
+
