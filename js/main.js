@@ -8,3 +8,17 @@ const RANDOM_MESSAGE = [
   'В целом всё неплохо. Но не всё.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.'
 ];
+
+/**
+ * Функция-генератор идентификатора для id и url.
+ * @return {integer} - Сгенерированный идентификатор.
+ */
+function createIdGenerator() {
+  let lastGenerated = 0;
+  return function () {
+    lastGenerated += 1;
+    return lastGenerated;
+  };
+}
+const generateId = createIdGenerator();
+const generateIdPhoto = createIdGenerator();
