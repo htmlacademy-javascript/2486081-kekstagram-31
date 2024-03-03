@@ -1,6 +1,6 @@
 const NUM_OF_GENERATIONS = 25;
-const maxLikes = 200;
-const minLikes = 15;
+const MAX_LIKES = 200;
+const MIN_LIKES = 15;
 const RANDOM_DESCRIPTION = ['Вдохновляюсь!', 'Моя любовь <3', 'Лайк, если не дурак. -_-'];
 const RANDOM_NAME = ['Артем', 'Дима', 'Ксюша',];
 const RANDOM_MESSAGE = [
@@ -10,8 +10,8 @@ const RANDOM_MESSAGE = [
 ];
 
 /**
- * Функция-генератор идентификатора для id и url.
- * @return {integer} - Сгенерированный идентификатор.
+ * Функция-генератор функции идентификатора для id и url.
+ * @return {function} - Функция, которая генерирует идентификатор.
  */
 function createIdGenerator() {
   let lastGenerated = 0;
@@ -35,23 +35,33 @@ function createRandomNumber(min,max) {
   return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
 }
 
+//Функция случайного элемента массива
+function getRandomElement (array) {
+  return createRandomNumber(0,array.length - 1);
+}
+
+//Функция создания комментов
+function getObjectComments () {
+  return {
+    id: createRandomNumber(0,1000),
+    avatar: `img/avatar-${createRandomNumber(1,6)}.svg`,
+    message: RANDOM_MESSAGE[getRandomElement(RANDOM_MESSAGE)],
+    name: RANDOM_NAME[getRandomElement(RANDOM_NAME)]
+  };
+}
+
 /**
  * Функция создания объекта.
  * @return {object} - Объект со сгенерироваными значениями ключей.
  */
 function getObject() {
-  return ({
+  return {
     id: generateId(),
     url: `photos/${generateIdPhoto()}.jpg`,
-    description: RANDOM_DESCRIPTION[createRandomNumber(0, RANDOM_DESCRIPTION.length - 1)],
-    likes:createRandomNumber(minLikes,maxLikes),
-    comments: {
-      id: createRandomNumber(0,1000),
-      avatar: `img/avatar-${createRandomNumber(1,6)}.svg`,
-      message: RANDOM_MESSAGE[createRandomNumber(0,RANDOM_MESSAGE.length - 1)],
-      name: RANDOM_NAME[createRandomNumber(0,RANDOM_NAME.length - 1)]
-    }
-  });
+    description: RANDOM_DESCRIPTION[getRandomElement(RANDOM_DESCRIPTION)],
+    likes:createRandomNumber(MIN_LIKES,MAX_LIKES),
+    comments: Array.from({length: createRandomNumber(0,30)}, getObjectComments)
+  };
 }
 
 //Создаем массив и добавляем в него 25 сгенерированных объектов.
