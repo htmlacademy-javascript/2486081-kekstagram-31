@@ -15,15 +15,15 @@ function generateComments() {
 }
 
 const generateId = createIdGenerator();
-const generateIdPhoto = createIdGenerator();
 /**
  * Функция генерации описания фото.
  * @return {object} Объект со случайным описанием фото.
  */
 function generateDescriptionPhoto() {
+  const id = generateId();
   return {
-    id: generateId(),
-    url: `photos/${generateIdPhoto()}.jpg`,
+    id: id,
+    url: `photos/${id}.jpg`,
     description: RANDOM_DESCRIPTION[getRandomElement(RANDOM_DESCRIPTION)],
     likes: createRandomNumber(Likes.MIN, Likes.MAX),
     comments: Array.from({length: createRandomNumber(NumberOfComments.MIN, NumberOfComments.MAX)}, generateComments)
