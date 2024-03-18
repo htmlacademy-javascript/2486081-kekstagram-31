@@ -37,9 +37,9 @@ checkPalindrome('ДовОд'); // true
 checkPalindrome('Кекс'); // false
 
 const hourInMinutes = 60;
-const index = {
-  hour: 0,
-  min: 1
+const Index = {
+  HOUR: 0,
+  MIN: 1
 };
 /**
  * Функция для перевода часов в минуты.
@@ -47,7 +47,7 @@ const index = {
  * @return {integer} Время, переведенное из часов в минуты.
  */
 const convertToMinutes = (time) => {
-  const result = +time[index.hour] * hourInMinutes + +time[index.min];
+  const result = +time[Index.HOUR] * hourInMinutes + +time[Index.MIN];
   return result;
 };
 
