@@ -33,9 +33,9 @@ function generateDescriptionPhoto() {
  * Функция получения массива с объектами, которые описывают фото.
  * @return {array} Массив с описанными фотографиями и комментариями.
  */
-function getArrayPhotos() {
+function getPhotos() {
   const arrayOfPhotos = Array.from({length: NUM_OF_GENERATIONS}, generateDescriptionPhoto);
   return arrayOfPhotos;
 }
 
-export {getArrayPhotos};
+export {getPhotos};
