@@ -1,3 +1,4 @@
-import {getArrayPhotos} from './data.js';
-import {renderPhotos} from './miniature.js';
-renderPhotos(getArrayPhotos());
+import {getPictures} from './data.js';
+import {renderPictures} from './render-content.js';
+
+renderPictures(getPictures());
