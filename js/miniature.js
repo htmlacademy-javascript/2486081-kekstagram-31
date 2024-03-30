@@ -12,7 +12,7 @@ function renderPhotos(arrayPhotos) {
     photoElement.querySelector('.picture__comments').textContent = comments.length;
     fragmentPhoto.append(photoElement);
   });
-
+///
   listPictures.append(fragmentPhoto);
 }
 export {renderPhotos};
