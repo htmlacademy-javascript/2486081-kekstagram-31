@@ -36,7 +36,7 @@ checkPalindrome('ДовОд'); // true
 // Это не палиндром
 checkPalindrome('Кекс'); // false
 
-const hourInMinutes = 60;
+const HOUR_IN_MINUTES= 60;
 const index = {
   hour: 0,
   min: 1
