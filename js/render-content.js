@@ -44,5 +44,5 @@ buttonClose.addEventListener('click', () => {
   document.querySelector('.social__comments').innerHTML = '';
 });
 
-
+//
 export {renderPictures};
