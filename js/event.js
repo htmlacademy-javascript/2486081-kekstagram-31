@@ -12,8 +12,6 @@ const onDocumentKeydown = (evt) => {
 function openBigPicture() {
   bigPicture.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
-  document.querySelector('.social__comment-count').classList.add('hidden');
-  document.querySelector('.comments-loader').classList.add('hidden');
   document.addEventListener('keydown', onDocumentKeydown);
 }
 
