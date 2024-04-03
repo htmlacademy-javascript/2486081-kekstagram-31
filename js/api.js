@@ -1,4 +1,4 @@
-import {showErrorForm, dataErrorPicture} from './util';
+import {showErrorForm, showDataErrorPicture} from './show-alerts';
 
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 const Route = {
@@ -22,8 +22,16 @@ const load = (route, error, method = Method.GET, body = null) =>
       throw new Error(error());
     });
 
-const getData = () => load(Route.GET_DATA, dataErrorPicture);
+const sendCorrectAttributes = () => {
+  const formElement = document.querySelector('.img-filters__form');
+  formElement.action = 'https://31.javascript.htmlacademy.pro/kekstagram';
+  formElement.method = 'POST';
+  formElement.enctype = 'multipart/form-data';
+};
+
+
+const getData = () => load(Route.GET_DATA, showDataErrorPicture);
 
 const sendData = (body) => load(Route.SEND_DATA,showErrorForm, Method.POST, body);
 
-export {getData, sendData};
+export {getData, sendData, sendCorrectAttributes};

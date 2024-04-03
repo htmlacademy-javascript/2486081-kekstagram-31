@@ -1,4 +1,4 @@
-import {showErrorForm,showSuccessForm} from './util.js';
+import {/*showErrorForm,*/showSuccessForm} from './show-alerts.js';
 import {sendData} from './api.js';
 
 const regexp = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -100,10 +100,10 @@ function setformSubmit(onSuccess) {
           onSuccess();
           showSuccessForm();
         })
-        .catch(() => {
-          showErrorForm();
-        }
-        )
+        // .catch(() => {
+        //   showErrorForm(); //создает второй errorFormElement
+        // }
+        // )
         .finally(unblockSubmitButton);
     }
   });
