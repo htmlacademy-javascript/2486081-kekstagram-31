@@ -14,10 +14,10 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
-function blockEscapeKey (element) {
+const blockEscapeKey = (element) => {
   element.addEventListener('focus', () => document.removeEventListener('keydown', onDocumentKeydown));
   element.addEventListener('blur', () => document.addEventListener('keydown', onDocumentKeydown));
-}
+};
 
 function closeUploadedPicture() {
   document.querySelector('#upload-select-image').reset();

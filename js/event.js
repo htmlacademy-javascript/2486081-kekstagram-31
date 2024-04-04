@@ -3,7 +3,6 @@ const bigPicture = document.querySelector('.big-picture');
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
-    document.querySelector('.social__comments').innerHTML = '';
     evt.preventDefault();
     closeBigPicture();
   }

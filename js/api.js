@@ -27,6 +27,7 @@ const sendCorrectAttributes = () => {
   formElement.action = 'https://31.javascript.htmlacademy.pro/kekstagram';
   formElement.method = 'POST';
   formElement.enctype = 'multipart/form-data';
+  //fileChooser.accept = 'image/png, image/jpeg'; //import {fileChooser} from './avatar.js';
 };
 
 
