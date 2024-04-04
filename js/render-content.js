@@ -1,4 +1,6 @@
 import {openBigPicture,closeBigPicture} from './event.js';
+const STEP = 5;
+
 const templateComment = document.querySelector('.social__comment');
 const listComment = document.querySelector('.social__comments');
 const buttonAddComment = document.querySelector('.social__comments-loader');
@@ -22,7 +24,7 @@ function renderPictures(picture) {
       document.querySelector('.social__caption').textContent = description;
       document.querySelector('.likes-count').textContent = likes;
       let number = 5;
-      const STEP = 5;
+
       if (comments.length === 0) {
         document.querySelector('.social__comment-shown-count').textContent = 0;
         document.querySelector('.social__comment-total-count').textContent = 0;
