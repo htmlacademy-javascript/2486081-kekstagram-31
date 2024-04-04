@@ -10,8 +10,9 @@ function renderPictures(picture) {
   picture.forEach(({url, description, likes, comments}) => {
 
     const pictureElement = template.cloneNode(true);
-    pictureElement.querySelector('img').src = url;
-    pictureElement.querySelector('img').alt = description;
+    const imgElement = pictureElement.querySelector('img');
+    imgElement.src = url;
+    imgElement.alt = description;
     pictureElement.querySelector('.picture__likes').textContent = likes;
     pictureElement.querySelector('.picture__comments').textContent = comments.length;
     fragmentPicture.append(pictureElement);
@@ -32,19 +33,19 @@ function renderPictures(picture) {
       addComments(comments);
 
       function addComments(comment) {
-        const arrComment = comment;
-        const arrSliceComments = arrComment.slice(0 , number);
+        const arrSliceComments = comment.slice(0 , number);
         listComment.innerHTML = '';
         arrSliceComments.forEach(({avatar, name, message}) => {
           const commentElement = templateComment.cloneNode(true);
-          commentElement.querySelector('img').src = avatar;
-          commentElement.querySelector('img').alt = name;
+          const imgElementComments = commentElement.querySelector('img');
+          imgElementComments.src = avatar;
+          imgElementComments.alt = name;
           commentElement.querySelector('.social__text').textContent = message;
           listComment.append(commentElement);
           document.querySelector('.social__comment-shown-count').textContent = arrSliceComments.length;
-          document.querySelector('.social__comment-total-count').textContent = arrComment.length;
+          document.querySelector('.social__comment-total-count').textContent = comment.length;
 
-          if (arrSliceComments.length >= arrComment.length) {
+          if (arrSliceComments.length >= comment.length) {
             buttonAddComment.classList.add('hidden');
           } else {
             buttonAddComment.classList.remove('hidden');

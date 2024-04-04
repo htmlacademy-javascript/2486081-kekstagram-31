@@ -1,7 +1,6 @@
-import {minusScale, plusScale} from './scale.model';
+import {minusScale, plusScale} from './scale-model';
 import {isEscapeKey} from './util.js';
 import {getEffect} from './effect-model.js';
-import {getValidate} from './validate.js';
 
 const hashtagsElement = document.querySelector('.text__hashtags');
 const descriptionElement = document.querySelector('.text__description');
@@ -21,6 +20,7 @@ function blockEscapeKey (element) {
 }
 
 function closeUploadedPicture() {
+  document.querySelector('#upload-select-image').reset();
   uploadedPicture.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
@@ -35,6 +35,5 @@ function openUploadedPicture() {
   blockEscapeKey(hashtagsElement);
   blockEscapeKey(descriptionElement);
   getEffect();
-  getValidate();
 }
 export {openUploadedPicture, closeUploadedPicture};
