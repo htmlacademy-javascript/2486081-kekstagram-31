@@ -1,4 +1,5 @@
 import {showErrorForm, showDataErrorPicture} from './show-alerts';
+import {fileChooser} from './chooser-file';
 
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 const Route = {
@@ -27,6 +28,7 @@ const sendCorrectAttributes = () => {
   formElement.action = 'https://31.javascript.htmlacademy.pro/kekstagram';
   formElement.method = 'POST';
   formElement.enctype = 'multipart/form-data';
+  fileChooser.accept = 'image/png, image/jpeg';
 };
 
 

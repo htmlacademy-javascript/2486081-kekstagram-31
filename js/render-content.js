@@ -1,4 +1,4 @@
-import {openBigPicture,closeBigPicture} from './event.js';
+import {openBigPicture,closeBigPicture} from './open-close-picture.js';
 const COUNT = 0;
 const STEP = 5;
 
