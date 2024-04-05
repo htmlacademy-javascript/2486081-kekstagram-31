@@ -52,10 +52,9 @@ const updateOptionsEffect = (effect) => {
 
 const getEffect = () => {
   uploadForm.addEventListener('change', (evt) => {
-    if (radioValue === 'none') {
+    if (evt.target.value === 'none') {
       preview.style.filter = '';
       document.querySelector('.img-upload__effect-level').classList.add('hidden');
-      console.log(radioValue);
     }
     if (evt.target.value === 'chrome') {
       updateOptionsEffect(Effects.CHROME);
