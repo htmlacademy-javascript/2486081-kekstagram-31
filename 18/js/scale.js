@@ -2,41 +2,38 @@ import {preview} from './chooser-file.js';
 
 const STEP_SCALE = 25;
 const PERCENT_SCALE = 100;
+const RADIX = 10;
 const Limit = {
   MAX: '100%',
   MIN: '25%'
 };
+
 
 const smallerScale = document.querySelector('.scale__control--smaller');
 const biggerScale = document.querySelector('.scale__control--bigger');
 const valueScale = document.querySelector('.scale__control--value');
 
 const minusScale = () => {
-  valueScale.value = `${parseFloat(valueScale.value) - STEP_SCALE}%`;
-  valueScale.setAttribute('value', valueScale.value);
-  if (valueScale.value === Limit.MIN) {
-    smallerScale.disabled = true;
+  if (valueScale.value !== Limit.MIN) {
+    valueScale.value = `${parseInt(valueScale.value, RADIX) - STEP_SCALE}%`;
+    valueScale.setAttribute('value', valueScale.value);
+    preview.style.transform = `scale(${parseInt(valueScale.value, RADIX) / PERCENT_SCALE})`;
   }
-  preview.style.transform = `scale(${parseFloat(valueScale.value) / PERCENT_SCALE})`;
 };
 
 const plusScale = () => {
-  valueScale.value = `${parseFloat(valueScale.value) + STEP_SCALE}%`;
-  valueScale.setAttribute('value', valueScale.value);
-  if (valueScale.value === Limit.MAX) {
-    biggerScale.disabled = true;
+  if (valueScale.value !== Limit.MAX) {
+    valueScale.value = `${parseInt(valueScale.value, RADIX) + STEP_SCALE}%`;
+    valueScale.setAttribute('value', valueScale.value);
+    preview.style.transform = `scale(${parseInt(valueScale.value, RADIX) / PERCENT_SCALE})`;
   }
-  preview.style.transform = `scale(${parseFloat(valueScale.value) / PERCENT_SCALE})`;
 };
 
 smallerScale.addEventListener('click', () => {
   minusScale();
-  biggerScale.disabled = false;
 });
-
 biggerScale.addEventListener('click', () => {
   plusScale();
-  smallerScale.disabled = false;
 });
 
-export {minusScale, plusScale};
+export {minusScale, plusScale, valueScale};

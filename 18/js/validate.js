@@ -34,11 +34,11 @@ pristine.addValidator(
 
 
 const validateHashtag = (value) => {
-  const hashtagArr = hashtagsElement.value.toLowerCase().trim().split(' ');//---->
+  const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
   if (value === '') {
     return true;
   }
-  for (const hashtag of hashtagArr) {
+  for (const hashtag of hashtags) {
     if (regexp.test(hashtag) === false) {
       return false;
     }
@@ -47,17 +47,17 @@ const validateHashtag = (value) => {
 };
 
 const validQuantityHashtag = () => {
-  const hashtagArr = hashtagsElement.value.toLowerCase().trim().split(' ');//---->
-  if (hashtagArr.length > MAX_HASHTAG_NUMBERS) {
+  const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
+  if (hashtags.length > MAX_HASHTAG_NUMBERS) {
     return false;
   }
   return true;
 };
 
 const validUniqueHashtag = () => {
-  const hashtagArr = hashtagsElement.value.toLowerCase().trim().split(' ');//---->
-  const uniqueHashtag = new Set(hashtagArr);//---->
-  if (uniqueHashtag.size !== hashtagArr.length) {
+  const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
+  const uniqueHashtag = new Set(hashtags);
+  if (uniqueHashtag.size !== hashtags.length) {
     return false;
   }
   return true;
@@ -107,4 +107,4 @@ const setformSubmit = (onSuccess) => {
   });
 };
 
-export {setformSubmit, hashtagsElement, descriptionElement};
+export {setformSubmit, hashtagsElement, descriptionElement, pristine};

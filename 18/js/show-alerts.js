@@ -1,5 +1,5 @@
-import {isEscapeKey} from './util.js';
-const ALERT_SHOW_TIME = 5000;
+import {isEscapeKey, ALERT_SHOW_TIME} from './util.js';
+
 
 const closeErrorFormMessage = () => {
   const errorFormMessage = document.querySelector('.error');
@@ -8,12 +8,24 @@ const closeErrorFormMessage = () => {
 
   errorButton.addEventListener('click', () => {
     errorFormMessage.remove();
+    document.removeEventListener('keydown', onDocumentKeydown);
+    document.removeEventListener('click', onDocumentClick);
   });
 
-  const onDocumentClick = (evt) => !errorFormInner.contains(evt.target) ? errorFormMessage.remove() : false;
-  const onDocumentKeydown = (evt) => isEscapeKey(evt) ? errorFormMessage.remove() : false;
+  function onDocumentClick(evt) {
+    if(!errorFormInner.contains(evt.target)) {
+      errorFormMessage.remove();
+      document.removeEventListener('keydown', onDocumentKeydown);
+    }
+  }
+  function onDocumentKeydown(evt) {
+    if(isEscapeKey(evt)) {
+      errorFormMessage.remove();
+      document.removeEventListener('click', onDocumentClick);
+    }
+  }
 
-  document.addEventListener('keydown', onDocumentKeydown, {once: true});//закрывает все.
+  document.addEventListener('keydown', onDocumentKeydown, {once: true});
   document.addEventListener('click', onDocumentClick, {once: true});
 };
 
@@ -24,10 +36,22 @@ const closeSuccessMessage = () => {
 
   successButton.addEventListener('click', () => {
     successMessage.remove();
+    document.removeEventListener('keydown', onDocumentKeydown);
+    document.removeEventListener('click', onDocumentClick);
   });
 
-  const onDocumentClick = (evt) => !successInner.contains(evt.target) ? successMessage.remove() : false;
-  const onDocumentKeydown = (evt) => isEscapeKey(evt) ? successMessage.remove() : false;
+  function onDocumentClick(evt) {
+    if(!successInner.contains(evt.target)) {
+      successMessage.remove();
+      document.removeEventListener('keydown', onDocumentKeydown);
+    }
+  }
+  function onDocumentKeydown(evt) {
+    if (isEscapeKey(evt)) {
+      successMessage.remove();
+      document.removeEventListener('click', onDocumentClick);
+    }
+  }
 
   document.addEventListener('keydown', onDocumentKeydown, {once: true});
   document.addEventListener('click', onDocumentClick, {once: true});
