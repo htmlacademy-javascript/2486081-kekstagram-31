@@ -32,9 +32,8 @@ const plusScale = () => {
 smallerScale.addEventListener('click', () => {
   minusScale();
 });
-
 biggerScale.addEventListener('click', () => {
   plusScale();
 });
 
-export {minusScale, plusScale};
+export {minusScale, plusScale, valueScale};
