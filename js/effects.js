@@ -55,7 +55,7 @@ const changesEffects = () => {
     if (evt.target.value === 'none') {
       preview.style.filter = '';
       document.querySelector('.img-upload__effect-level').classList.add('hidden');
-    } else if (evt.target.value) {
+    } else if (Object.keys(Effects).includes(evt.target.value.toUpperCase())) {
       updateOptionsEffect(Effects[effectName]);
       updateValueEffect(Effects[effectName]);
     }
