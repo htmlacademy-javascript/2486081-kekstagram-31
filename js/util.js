@@ -1,35 +1,16 @@
-/**
- * Функция-генератор случайного числа.
- * @param {integer} min - Нижняя граница диапозона случайного числа.
- * @param {integer} max - Верхняя граница диапозона случайного числа.
- * @return {integer} Случайное число из диапозона.
- */
-function createRandomNumber(min, max) {
-  const minValue = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const maxValue = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  return Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
-}
+const RERENDER_DELAY = 500;
+const DEFAULT_VALUE_SCALE = '100%';
+const ALERT_SHOW_TIME = 5000;
 
-/**
- * Функция случайного элемента массива
- * @param {array} array - Массив, у которого надо найти случайный элемент.
- * @return {integer} Случайный элемент массива.
- */
-function getRandomElement(array) {
-  return createRandomNumber(0, array.length - 1);
-}
-
-/**
- * Функция-генератор функции идентификатора для id и url.
- * @return {function} Функция, которая генерирует идентификатор.
- */
-function createIdGenerator() {
-  let lastGenerated = 0;
-  return function () {
-    lastGenerated ++;
-    return lastGenerated;
-  };
-}
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export {getRandomElement, createRandomNumber, createIdGenerator, isEscapeKey};
+const debounce = (callback, timeoutDelay = RERENDER_DELAY) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+
+export {isEscapeKey, debounce, RERENDER_DELAY, DEFAULT_VALUE_SCALE, ALERT_SHOW_TIME};

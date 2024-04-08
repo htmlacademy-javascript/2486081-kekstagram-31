@@ -1,4 +1,4 @@
-import {/*showErrorForm,*/showSuccessForm} from './show-alerts.js';
+import {showSuccessForm} from './show-alerts.js';
 import {sendData} from './api.js';
 
 const regexp = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -24,42 +24,44 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper__error-text'
 });
 
-function validateDescription(value) {
-  return value.length <= MAX_LENGTH;
-}
+const validateDescription = (value) => value.length <= MAX_LENGTH;
+
 pristine.addValidator(
   descriptionElement,
   validateDescription,
   Message.TEXT_ERROR_DESCRIPTION
 );
 
-function validateHashtag(value) {
-  const hashtagArr = hashtagsElement.value.toLowerCase().trim().split(' ');//
+
+const validateHashtag = (value) => {
+  const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
   if (value === '') {
     return true;
   }
-  for (const hashtag of hashtagArr) {
+  for (const hashtag of hashtags) {
     if (regexp.test(hashtag) === false) {
       return false;
     }
   }
   return true;
-}
-function validQuantityHashtag() {
-  const hashtagArr = hashtagsElement.value.toLowerCase().trim().split(' ');//
-  if (hashtagArr.length > MAX_HASHTAG_NUMBERS) {
+};
+
+const validQuantityHashtag = () => {
+  const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
+  if (hashtags.length > MAX_HASHTAG_NUMBERS) {
     return false;
   }
   return true;
-}
-function validUniqueHashtag() {
-  const hashtagArr = hashtagsElement.value.toLowerCase().trim().split(' ');//
-  const uniqueHashtag = new Set(hashtagArr);//
-  if (uniqueHashtag.size !== hashtagArr.length) {
+};
+
+const validUniqueHashtag = () => {
+  const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
+  const uniqueHashtag = new Set(hashtags);
+  if (uniqueHashtag.size !== hashtags.length) {
     return false;
   }
   return true;
-}
+};
 
 pristine.addValidator(
   hashtagsElement,
@@ -77,17 +79,17 @@ pristine.addValidator(
   Message.TEXT_ERROR_INVALID_HASHTAG
 );
 
-function blockSubmitButton() {
+const blockSubmitButton = () => {
   uploadButton.disabled = true;
   uploadButton.textContent = Message.UPLOAD_BUTTON_TEXT_SENDING;
-}
+};
 
-function unblockSubmitButton(){
+const unblockSubmitButton = () => {
   uploadButton.disabled = false;
-  uploadButton.disabled = Message.UPLOAD_BUTTON_TEXT_ORIGINAL;
-}
+  uploadButton.textContent = Message.UPLOAD_BUTTON_TEXT_ORIGINAL;
+};
 
-function setformSubmit(onSuccess) {
+const setformSubmit = (onSuccess) => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -100,13 +102,9 @@ function setformSubmit(onSuccess) {
           onSuccess();
           showSuccessForm();
         })
-        // .catch(() => {
-        //   showErrorForm(); //создает второй errorFormElement
-        // }
-        // )
         .finally(unblockSubmitButton);
     }
   });
-}
+};
 
-export {setformSubmit};
+export {setformSubmit, hashtagsElement, descriptionElement, pristine};

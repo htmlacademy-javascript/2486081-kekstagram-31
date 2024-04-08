@@ -1,24 +1,23 @@
 import {isEscapeKey} from './util.js';
 const bigPicture = document.querySelector('.big-picture');
 
-const onDocumentKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    document.querySelector('.social__comments').innerHTML = '';
-    evt.preventDefault();
-    closeBigPicture();
-  }
-};
-
-function openBigPicture() {
+const openBigPicture = () => {
   bigPicture.classList.remove('hidden');
   document.querySelector('body').classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeydown);
-}
+};
 
-function closeBigPicture() {
+const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
   document.querySelector('body').classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
+};
+
+function onDocumentKeydown (evt) {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeBigPicture();
+  }
 }
 
 export {openBigPicture, closeBigPicture};

@@ -1,23 +1,20 @@
-import {renderPictures} from './render-content.js';
-import {openUploadedPicture, closeUploadedPicture} from './uploaded-model.js';
-import {setformSubmit} from './validate.js';
+import {closeUploadedPicture, toggleUploadedPicture} from './open-close-uploaded.js';
 import {getData, sendCorrectAttributes} from './api.js';
+import {renderPictures} from './render-content.js';
+import {filter, changeFilter} from './filter.js';
+import {setformSubmit} from './validate.js';
 
-const cancelUploadedPicture = document.querySelector('.img-upload__cancel');
-const uploadInput = document.querySelector('.img-upload__input');
 
-uploadInput.addEventListener('change', () => {
-  openUploadedPicture();
-});
-cancelUploadedPicture.addEventListener('click', () => {
-  closeUploadedPicture();
-});
-
-sendCorrectAttributes();
 setformSubmit(closeUploadedPicture);
 getData()
   .then((picture) => {
+    filter.classList.remove('img-filters--inactive');
+    sendCorrectAttributes();
     renderPictures(picture);
-  });
-
+    changeFilter(picture);
+  })
+  .catch (
+    filter.classList.add('img-filters--inactive')
+  )
+  .finally(toggleUploadedPicture());
 
