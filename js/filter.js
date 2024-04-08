@@ -7,11 +7,7 @@ const debounceRender = debounce(renderPictures);
 const filter = document.querySelector('.img-filters');
 const filterForm = document.querySelector('.img-filters__form');
 
-const getDiscussed = (pictureA, pictureB) =>{
-  const DescriptionA = pictureA.comments.length;
-  const DescriptionB = pictureB.comments.length;
-  return DescriptionB - DescriptionA;
-};
+const getDiscussed = (pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length;
 
 const applyFilters = () => {
   let filteredPictures = [];
