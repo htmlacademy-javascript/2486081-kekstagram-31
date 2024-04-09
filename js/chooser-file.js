@@ -1,4 +1,4 @@
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const FILES_TYPES = ['jpg', 'jpeg', 'png'];
 
 const fileChooser = document.querySelector('.img-upload__input');
 const preview = document.querySelector('.img-upload__preview');
@@ -8,7 +8,7 @@ fileChooser.accept = 'image/png, image/jpeg';
 
 const uploadYourPicture = (file) => {
   const fileName = file.name.toLowerCase();
-  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const matches = FILES_TYPES.some((it) => fileName.endsWith(it));
   if (matches) {
     const url = URL.createObjectURL(file);
     imgPreview.src = url;

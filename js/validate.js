@@ -46,7 +46,7 @@ const validateHashtag = (value) => {
   return true;
 };
 
-const validQuantityHashtag = () => {
+const validateQuantityHashtag = () => {
   const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
   if (hashtags.length > MAX_HASHTAG_NUMBERS) {
     return false;
@@ -54,7 +54,7 @@ const validQuantityHashtag = () => {
   return true;
 };
 
-const validUniqueHashtag = () => {
+const validateUniqueHashtag = () => {
   const hashtags = hashtagsElement.value.toLowerCase().trim().split(' ');
   const uniqueHashtag = new Set(hashtags);
   if (uniqueHashtag.size !== hashtags.length) {
@@ -65,12 +65,12 @@ const validUniqueHashtag = () => {
 
 pristine.addValidator(
   hashtagsElement,
-  validQuantityHashtag,
+  validateQuantityHashtag,
   Message.TEXT_ERROR_QUANRITY_HASHTAG
 );
 pristine.addValidator(
   hashtagsElement,
-  validUniqueHashtag,
+  validateUniqueHashtag,
   Message.TEXT_ERROR_UNIQUE_HASHTAG
 );
 pristine.addValidator(
