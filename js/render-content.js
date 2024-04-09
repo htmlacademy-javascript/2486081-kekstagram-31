@@ -20,7 +20,7 @@ const removePicturesElements = () => {
 
 const renderComments = (comment, start) => {
   const commentsSlice = comment.slice(0 , start + STEP);
-  document.querySelector('.social__comments').innerHTML = '';
+  listComment.innerHTML = '';
 
   commentsSlice.forEach(({avatar, name, message}) => {
 

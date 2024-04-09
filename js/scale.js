@@ -13,7 +13,7 @@ const smallerScale = document.querySelector('.scale__control--smaller');
 const biggerScale = document.querySelector('.scale__control--bigger');
 const valueScale = document.querySelector('.scale__control--value');
 
-const minusScale = () => {
+const decreaseScale = () => {
   if (valueScale.value !== Limit.MIN) {
     valueScale.value = `${parseInt(valueScale.value, RADIX) - STEP_SCALE}%`;
     valueScale.setAttribute('value', valueScale.value);
@@ -21,7 +21,7 @@ const minusScale = () => {
   }
 };
 
-const plusScale = () => {
+const increaseScale = () => {
   if (valueScale.value !== Limit.MAX) {
     valueScale.value = `${parseInt(valueScale.value, RADIX) + STEP_SCALE}%`;
     valueScale.setAttribute('value', valueScale.value);
@@ -30,10 +30,10 @@ const plusScale = () => {
 };
 
 smallerScale.addEventListener('click', () => {
-  minusScale();
+  decreaseScale();
 });
 biggerScale.addEventListener('click', () => {
-  plusScale();
+  increaseScale();
 });
 
-export {minusScale, plusScale, valueScale};
+export {decreaseScale, increaseScale, valueScale};

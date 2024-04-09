@@ -1,11 +1,11 @@
 import {renderPictures} from './render-content.js';
-import {debounce} from './util.js';
+import {getDebounce} from './util.js';
 
 let filterName = 'filter-default';
 let pictures = [];
-const debounceRender = debounce(renderPictures);
+const debounceRender = getDebounce(renderPictures);
 const filter = document.querySelector('.img-filters');
-const filterForm = document.querySelector('.img-filters__form');
+const filterForm = filter.querySelector('.img-filters__form');
 
 const getDiscussed = (pictureA, pictureB) => pictureB.comments.length - pictureA.comments.length;
 
@@ -23,7 +23,7 @@ const applyFilters = () => {
   debounceRender(filteredPictures);
 };
 
-const activeButton = (evt) => {
+const getActiveButton = (evt) => {
   const currentButton = evt.target.closest('button');
   const activeFilter = document.querySelector('.img-filters__button--active');
 
@@ -37,7 +37,7 @@ const activeButton = (evt) => {
 };
 
 const changeFilter = (picture) => {
-  filterForm.addEventListener('click', activeButton);
+  filterForm.addEventListener('click', getActiveButton);
   pictures = picture;
 };
 

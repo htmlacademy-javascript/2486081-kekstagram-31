@@ -1,4 +1,5 @@
 import {isEscapeKey, ALERT_SHOW_TIME} from './util.js';
+import {bodyElement} from './open-close-uploaded.js';
 
 
 const closeErrorFormMessage = () => {
@@ -60,21 +61,21 @@ const closeSuccessMessage = () => {
 const showErrorForm = () => {
   const templateErrorForm = document.querySelector('#error').content.querySelector('section');
   const errorFormElement = templateErrorForm.cloneNode(true);
-  document.querySelector('body').append(errorFormElement);
+  bodyElement.append(errorFormElement);
   closeErrorFormMessage();
 };
 
 const showSuccessForm = () => {
   const templateSuccessForm = document.querySelector('#success').content.querySelector('section');
   const successFormElement = templateSuccessForm.cloneNode(true);
-  document.querySelector('body').append(successFormElement);
+  bodyElement.append(successFormElement);
   closeSuccessMessage();
 };
 
 const showDataErrorPicture = () => {
   const templateDataError = document.querySelector('#data-error').content.querySelector('section');
   const dataErrorElement = templateDataError.cloneNode(true);
-  document.querySelector('body').append(dataErrorElement);
+  bodyElement.append(dataErrorElement);
   setTimeout(() => {
     dataErrorElement.remove();
   }, ALERT_SHOW_TIME);
